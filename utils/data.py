@@ -5,7 +5,7 @@ import scanpy as sc
 import scipy as sp
 import squidpy as sq
 import numpy as np
-from utils.const import BRAIN_LABEL_DICT
+from utils.const import LABEL_DICT, CELLTYPE_NAME, X_COORDINATE_NAME, Y_COORDINATE_NAME
 
 
 def load_data(args):
@@ -28,11 +28,11 @@ def load_data(args):
         data_dict['X'] = torch.from_numpy(X)
 
         # label
-        labels = torch.tensor([BRAIN_LABEL_DICT[l] for l in adata.obs['cluster_L2']])
+        labels = torch.tensor([LABEL_DICT[l] for l in adata.obs[CELLTYPE_NAME]])
         data_dict['labels'] = labels
 
         if args.spatial:
-            adata.obsm['spatial'] = adata.obs[['adjusted.x', 'adjusted.y']].to_numpy()
+            adata.obsm['spatial'] = adata.obs[[X_COORDINATE_NAME, Y_COORDINATE_NAME]].to_numpy()
             data_dict['coordinates'] = torch.from_numpy(adata.obsm['spatial'])
             sq.gr.spatial_neighbors(adata, n_neighs=args.n_neighs)
             csr_matrix = adata.obsp['spatial_connectivities']

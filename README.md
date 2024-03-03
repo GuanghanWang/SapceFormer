@@ -26,9 +26,11 @@ After the h5ad files are rightly placed, change the corresponding strings to you
 *  scripts
 
 In order to run the SpaceFormer data, you should write the proper bash scripts. Two examples, which are the cross validation version of two different types of models, are given in the `scripts` folder. Here are some key points:
+    
     * Change the `$input` variable into the number of genes of your own data.
     * `$device` denotes the gpu id of your experiment.
     * Tune the other hyperparameters. Their settings are the optimized ones for the data used in the paper, but they may not be the proper ones for your own data.
+
 After writing the bash scripts, use the following command to train your SpaceFormer model:
 ```bash
 cd scripts

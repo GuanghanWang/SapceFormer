@@ -1,4 +1,4 @@
-# SapceFormer
+# SpaceFormer
 SpaceFormer is a Transformer based computational tool for spatial omics analysis. Given a set of adata files, this document demonstrates how one can train a SpaceFormer in a self-supervised manner.
 
 * environment
